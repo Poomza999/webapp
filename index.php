@@ -17,7 +17,7 @@ $username = $isLoggedIn ? htmlspecialchars($_SESSION['username']) : '';
 </head>
 <body>
     <div class="header">
-        <h1> ร้านน้ำจะปั่น </h1>
+        <h1>ร้านน้ำจะปั่น</h1>
         <div class="nav-links">
             <a href="index.php">หน้าแรก</a>
             <?php if ($isLoggedIn): ?>
