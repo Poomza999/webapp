@@ -119,6 +119,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #c75454ff;
             margin-bottom: 15px;
         }
+        .btn {
+            background-color: #c75454ff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -143,7 +152,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" name="password" placeholder="รหัสผ่าน" required>
                 <input type="submit" value="เข้าสู่ระบบ">
             </form>
-             <a href="index.php" class="back-link">ย้อนกลับ</a>
+            <br>
+            <a href="index.php" class="btn">ย้อนกลับ</a>
         </div>
     </div>
 
