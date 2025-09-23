@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
             $_SESSION['cart'][$id]['quantity']++;
         } else {
             $_SESSION['cart'][$id] = array(
-                'product_id' => $product['id'],
+                'id' => $product['id'],
                 'name' => $product['name'],
                 'price' => $product['price'],
                 'image_url' => $product['image_url'],
