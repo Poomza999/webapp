@@ -35,9 +35,9 @@ $totalPrice = 0;
 <body>
 
     <div class="header">
-        <h1>🍗 ระบบร้านไก่ทอดเกาหลี</h1>
+        <h1>🧋ร้านน้ำจะปั่น🧋</h1>
         <div class="nav-links">
-            <a href="index.php">หน้าแรก</a>
+            <a href="index.php">🏠หน้าแรก🏠</a>
             <a href="cart.php">ตะกร้าสินค้า 🛒</a>
             <?php if ($isLoggedIn): ?>
                 <a href="logout.php">ออกจากระบบ</a>
@@ -64,21 +64,21 @@ $totalPrice = 0;
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($_SESSION['cart'] as $productId => $item) {
+                        foreach ($_SESSION['cart'] as $id => $item) {
                             $subtotal = $item['price'] * $item['quantity'];
                             $totalPrice += $subtotal;
                         ?>
                             <tr>
-                                <td><?= htmlspecialchars($item['product_name']); ?></td>
+                                <td><?= htmlspecialchars($item['name']); ?></td>
                                 <td><?= number_format($item['price'], 2); ?> บาท</td>
                                 <td>
-                                    <a href="update_cart.php?action=decrease&product_id=<?= $productId ?>" class="update-btn">-</a>
+                                    <a href="update_cart.php?action=decrease&id=<?= $id ?>" class="update-btn">-</a>
                                     <?= $item['quantity']; ?>
-                                    <a href="update_cart.php?action=increase&product_id=<?= $productId ?>" class="update-btn">+</a>
+                                    <a href="update_cart.php?action=increase&id=<?= $id ?>" class="update-btn">+</a>
                                 </td>
                                 <td><?= number_format($subtotal, 2); ?> บาท</td>
                                 <td>
-                                    <a href="remove_from_cart.php?product_id=<?= $productId ?>" class="action-btn">ลบ</a>
+                                    <a href="remove_from_cart.php?id=<?= $id ?>" class="action-btn">ลบ</a>
                                 </td>
                             </tr>
                         <?php
