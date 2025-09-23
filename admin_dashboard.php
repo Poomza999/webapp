@@ -9,7 +9,9 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // ตรวจสอบสิทธิ์การใช้งานว่าเป็น admin หรือไม่
-if ($_SESSION['user_role'] != 'admin') {
+if ($_SESSION['user_role'] == 'admin') {
+    header("Location: admin_dashboard.php");
+} else {
     header("Location: index.php"); // ส่งกลับไปหน้าหลักหากไม่ใช่ admin
     exit();
 }
