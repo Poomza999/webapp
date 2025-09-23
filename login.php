@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <div class="header">
-        <h1>ร้านน้ำปั่น</h1>
+        <h1>ร้านน้ำจะปั่น</h1>
         <div class="nav-links">
             <a href="index.php">หน้าแรก</a>
             <a href="login.php">เข้าสู่ระบบ</a>
