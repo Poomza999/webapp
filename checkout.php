@@ -82,30 +82,45 @@ $totalPrice = 0;
                 </tbody>
             </table>
 
+                    <?php
+            $users_id = $_SESSION['id'];
+        ?>
+        <?php
+            $stmt = $conn->prepare("SELECT * FROM users WHERE id = ? LIMIT 1");
+            $stmt->bind_param("s", $users_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            if ($row) {
+        ?>  
             <h3>ข้อมูลสำหรับจัดส่ง</h3>
             <form action="process_order.php" method="POST">
+                <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                
                 <div class="form-group">
-                    <label for="name">ชื่อ-นามสกุล:</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="username">ชื่อผู้ใช้งาน:</label>
+                    <input type="text" disabled id="username" name="userusername" value="<?= $row["username"] ?>" required>
                 </div>
+                
+                <div class="form-group">
+                    <label for="email">อีเมล:</label>
+                    <input type="email" disabled id="email" name="email" value="<?= $row["email"] ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone_number">เบอร์โทรศัพท์:</label>
+                    <input type="tel" disabled id="telephone_number" name="telephone_number" value="<?= $row["telephone_number"] ?>">
+                </div>
+
                 <div class="form-group">
                     <label for="address">ที่อยู่:</label>
-                    <textarea id="address" name="address" rows="4" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="phone">เบอร์โทรศัพท์:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                    <input type="tel" 
-                        id="phone"
-                        name="phone"
-                        value="<?= htmlspecialchars($telephone_number) ?>" 
-                        readonly
-                        class="locked-input">
+                    <input type="text" disabled id="address" name="address" value="<?= $row["address"] ?>">
                 </div>
                 <button type="submit" class="submit-btn">ยืนยันการสั่งซื้อ</button>
             </form>
         </div>
-    </div>
+    <?php } ?>
+</div>
 
 </body>
 </html>
