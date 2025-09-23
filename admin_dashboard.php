@@ -99,13 +99,9 @@ if ($_SESSION['user_role'] != 'admin') {
         <h2 class="welcome-message">ยินดีต้อนรับเข้าสู่ระบบจัดการร้าน</h2>
         
         <div class="dashboard-menu">
-            <a href="manage_products.php" class="menu-card">
+            <a href="product_edit.php" class="menu-card">
                 <h3>จัดการสินค้า</h3>
                 <p>เพิ่ม แก้ไข หรือลบสินค้า</p>
-            </a>
-            <a href="manage_orders.php" class="menu-card">
-                <h3>จัดการคำสั่งซื้อ</h3>
-                <p>ดูรายการคำสั่งซื้อของลูกค้า</p>
             </a>
             <a href="manage_users.php" class="menu-card">
                 <h3>จัดการผู้ใช้งาน</h3>
