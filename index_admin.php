@@ -1,23 +1,7 @@
 <?php
 session_start();
-require_once 'conn.php';
+require_once './conn.php';
 
-// ตรวจสอบว่าผู้ใช้ล็อกอินอยู่หรือไม่
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
-// ตรวจสอบสิทธิ์การใช้งานว่าเป็น admin หรือไม่
-if ($_SESSION['user_role'] == 'admin') {
-    header("Location: admin_dashboard.php");
-} else {
-    header("Location: index.php"); // ส่งกลับไปหน้าหลักหากไม่ใช่ admin
-    exit();
-}
-
-// โค้ดสำหรับดึงข้อมูลสรุปมาแสดง (เช่น จำนวนสินค้า, จำนวนคำสั่งซื้อ)
-// ในตัวอย่างนี้ ผมจะแสดงแค่ตัวอย่างข้อความ
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +76,7 @@ if ($_SESSION['user_role'] == 'admin') {
     <div class="header">
         <h1>Dashboard ผู้ดูแลระบบ</h1>
         <div>
-            <span>สวัสดี, <?= $_SESSION['username'] ?></span>
+            <span> สวัสดี, <?= $_SESSION['username'] ?></span>
             <a href="logout.php">ออกจากระบบ</a>
         </div>
     </div>
@@ -105,7 +89,7 @@ if ($_SESSION['user_role'] == 'admin') {
                 <h3>จัดการสินค้า</h3>
                 <p>เพิ่ม แก้ไข หรือลบสินค้า</p>
             </a>
-            <a href="manage_users.php" class="menu-card">
+            <a href="user_edit.php" class="menu-card">
                 <h3>จัดการผู้ใช้งาน</h3>
                 <p>จัดการข้อมูลและสิทธิ์ผู้ใช้</p>
             </a>
