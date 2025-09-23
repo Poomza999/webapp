@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $email = $_POST['email'];
     $telephone_number = $_POST['telephone_number'];
+    $address = $_POST['address'];
     $user_role = 'user';
 
     $username = $conn->real_escape_string($username);
@@ -25,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $error = "ชื่อผู้ใช้นี้มีคนใช้แล้ว กรุณาเลือกชื่ออื่น";
     } else {
-        $insert_sql = "INSERT INTO users (username, password, email, user_role, telephone_number) VALUES ('$username', '$hashed_password', '$email', '$user_role', '$telephone_number')";
+        $insert_sql = "INSERT INTO users (username, password, email, user_role, telephone_number, address) VALUES ('$username', '$hashed_password', '$email', '$user_role', '$telephone_number', '$address')";
 
         if ($conn->query($insert_sql) === TRUE) {
             $success = "สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบ";
@@ -160,6 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" name="password" placeholder="รหัสผ่าน" required>
                 <input type="email" name="email" placeholder="อีเมล" required>
                 <input type="text" name="telephone_number" placeholder="เบอร์โทรศัพท์" required>
+                <input type="text" name="address" placeholder="ที่อยู่" required>
                 <input type="submit" value="สมัครสมาชิก">
             </form>
             <a href="index.php" class="back-link">ย้อนกลับ</a>

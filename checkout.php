@@ -67,7 +67,7 @@ $totalPrice = 0;
                         $totalPrice += $subtotal;
                     ?>
                         <tr>
-                            <td><?= htmlspecialchars($item['product_name']); ?></td>
+                            <td><?= htmlspecialchars($item['name']); ?></td>
                             <td><?= number_format($item['price'], 2); ?> บาท</td>
                             <td><?= $item['quantity']; ?></td>
                             <td><?= number_format($subtotal, 2); ?> บาท</td>
@@ -95,6 +95,12 @@ $totalPrice = 0;
                 <div class="form-group">
                     <label for="phone">เบอร์โทรศัพท์:</label>
                     <input type="tel" id="phone" name="phone" required>
+                    <input type="tel" 
+                        id="phone"
+                        name="phone"
+                        value="<?= htmlspecialchars($telephone_number) ?>" 
+                        readonly
+                        class="locked-input">
                 </div>
                 <button type="submit" class="submit-btn">ยืนยันการสั่งซื้อ</button>
             </form>

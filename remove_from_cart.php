@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if (isset($_GET['product_id'])) {
-    $product_id = intval($_GET['product_id']);
+if (isset($_GET['id'])) {
+    $id = intval($_GET['id']);
     
     if (!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $key => $item) {
-            if ($item['product_id'] == $product_id) {
+            if ($item['id'] == $id) {
                 unset($_SESSION['cart'][$key]);
                 break;
             }

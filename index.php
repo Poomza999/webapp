@@ -48,7 +48,7 @@ $username = $isLoggedIn ? htmlspecialchars($_SESSION['username']) : '';
                 <?php
                 if ($isLoggedIn) {
                 ?>
-                <a href="add_to_cart.php?product_id=<?= $row["id"] ?>" class="btn">เพิ่มลงในตะกร้า</a>
+                <a href="add_to_cart.php?id=<?= $row["id"] ?>" class="btn">เพิ่มลงในตะกร้า</a>
                 <?php
                 } else {
                 ?>
