@@ -2,7 +2,7 @@
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
-$database = 'joking';
+$database = 'shop';
 
 $conn = new mysqli($hostname, $username, $password, $database) or trigger_error(mysql_error(),E_USER_ERROR);
 
