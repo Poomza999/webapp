@@ -68,6 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_users"])) {
                 <div class="profile-header">
                     <h1>👤โปรไฟล์</h1>
                 </div>
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <label for="fileToUpload">Select image to upload:</label>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" value="Upload Image" name="submit">
+                </form>
 
             <form method="POST">
                 <input type="hidden" name="id" value="<?= $row['id']; ?>">
