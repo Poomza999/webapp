@@ -39,7 +39,7 @@ $totalPrice = 0;
 <body>
 
     <div class="header">
-        <h1>🍗 ระบบร้านไก่ทอดเกาหลี</h1>
+        <h1>ร้านน้ำจะปั่น</h1>
         <div class="nav-links">
             <a href="index.php">หน้าแรก</a>
             <a href="cart.php">ตะกร้าสินค้า 🛒</a>
