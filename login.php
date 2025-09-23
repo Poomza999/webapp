@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="submit" value="เข้าสู่ระบบ">
             </form>
             <br>
-            <a href="index.php" class="btn">ย้อนกลับ</a>
+            <a href="index.php" class="btn">ย้อนกลับ</a> 
         </div>
     </div>
 
