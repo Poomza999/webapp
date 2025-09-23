@@ -1,9 +1,10 @@
 <?php
 session_start();
-require_once 'conn.php';
 
-$isLoggedIn = isset($_SESSION['user_id']);
-$totalPrice = 0;
+require("./conn.php");
+
+$isLoggedIn = isset($_SESSION['id']);
+$username = $isLoggedIn ? htmlspecialchars($_SESSION['username']) : '';
 ?>
 
 <!DOCTYPE html>
