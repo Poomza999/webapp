@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once './conn.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +75,16 @@ require_once './conn.php';
     <div class="header">
         <h1>Dashboard ผู้ดูแลระบบ</h1>
         <div>
-            <span> สวัสดี, <?= $_SESSION['username'] ?></span>
+            <?php
+            if (isset($_SESSION['username'])) {
+                $username = $_SESSION['username'];
+            } else {
+                // redirect ไป login หรือกำหนดค่าเริ่มต้น
+                header('Location: login.php');
+                exit();
+            }
+            ?>
+            <span>ยินดีต้อนรับ, <?php echo htmlspecialchars($username); ?></span>
             <a href="logout.php">ออกจากระบบ</a>
         </div>
     </div>
