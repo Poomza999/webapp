@@ -23,13 +23,14 @@
         h1{
             color: #333;
             margin-bottom: 20px;
-            text-align: center;
+            
         }
         h2{
             color: #333;
             margin-bottom: 20px;
+            text-align: right;
         }
-        
+
         .alert {
             padding: 15px;
             border-radius: 5px;
@@ -94,6 +95,10 @@
         .btn-primary {
             background-color: #007bff;
             color: white;
+        }
+        .btn-add {
+            background-color: #1eff00;
+            color: rgb(0, 0, 0);
         }
         
         .btn-primary:hover {
