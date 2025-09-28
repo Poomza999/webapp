@@ -31,8 +31,178 @@ $product_id = isset($_GET["product_id"]) ? $_GET["product_id"] : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>จัดการสินค้า - แก้ไขข้อมูล</title>
-    <link rel="stylesheet" href="style_edit.css">
-    
+    <style>
+        /* style_edit.css */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        h1{
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            
+        }
+        h2{
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-add {
+            background-color: #1eff00;
+            color: rgb(0, 0, 0);
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .product-image {
+            max-width: 60px;
+            max-height: 60px;
+            border-radius: 5px;
+        }
+        
+        .edit-form {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .price {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .description {
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -79,7 +249,49 @@ $product_id = isset($_GET["product_id"]) ? $_GET["product_id"] : '';
             </form>
         </div>
         <?php } ?>
+
+        <?php if (isset($success_message)): ?>
+            <div class="alert alert-success"><?php echo $success_message; ?></div>
+        <?php endif; ?>
         
+        <?php if (isset($error_message)): ?>
+            <div class="alert alert-error"><?php echo $error_message; ?></div>
+        <?php endif; ?>
+        
+        <?php
+            $stmt = $conn->prepare("SELECT * FROM products WHERE id = ? LIMIT 1");
+            $stmt->bind_param("s", $product_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            if ($row) {
+        ?>
+        <div class="add-form">
+            <button type="submit" name="add_product" class="btn btn">📦 เพิ่มสินค้า</button>
+            <form method="POST">
+                <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                
+                <div class="form-group">
+                    <label for="name">ชื่อสินค้า:</label>
+                    <input type="text" id="name" name="name" value="<?= $row["name"] ?>" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">รายละเอียดสินค้า:</label>
+                    <textarea id="description" name="description" rows="4"><?= $row["description"] ?></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">ราคา:</label>
+                    <input id="price" name="price" rows="4" value="<?= $row["price"] ?>">
+                </div>
+
+                <button type="submit" name="update_product" class="btn btn-primary">📦 เพิ่มสินค้า</button>
+                <a href="product_edit.php" class="btn btn-secondary">❌ ยกเลิก</a>
+            </form>
+        </div>
+        <?php } ?>
+
         <h2>📋 รายการสินค้า</h2>
         
         <?php 
@@ -116,7 +328,9 @@ $product_id = isset($_GET["product_id"]) ? $_GET["product_id"] : '';
                     </td>
                     <td>
                         <a href="?product_id=<?php echo $product['id']; ?>" class="btn btn-warning">✏️ แก้ไข</a>
+                        <a href="product_delete.php?product_id=<?php echo $product['id']; ?>" class="btn btn-secondary" onclick="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบสินค้านี้?');">🗑️ ลบ</a>
                     </td>
+                    <td></td>
                 </tr>
                 <?php
                 }
