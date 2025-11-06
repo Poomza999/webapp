@@ -348,6 +348,9 @@ $product_id = isset($_GET["product_id"]) ? $_GET["product_id"] : '';
 </head>
 <body>
     <div class="container">
+        <div style="margin-bottom: 20px;">
+            <a href="index_admin.php" class="btn btn-secondary">🏠 Back To Dashboard</a>
+        </div>
         <h1>🛍️ จัดการสินค้า</h1>
         
         <?php if (isset($success_message)): ?>
