@@ -36,6 +36,9 @@ $users_id = isset($_GET["users_id"]) ? $_GET["users_id"] : '';
 </head>
 <body>
     <div class="container">
+        <div style="margin-bottom: 20px;">
+            <a href="index_admin.php" class="btn btn-secondary">🏠 Back To Dashboard</a>
+        </div>
         <h1>👨‍🔧 จัดการผู้ใช้งาน</h1>
         
         <?php if (isset($success_message)): ?>
